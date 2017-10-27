@@ -15,23 +15,29 @@ namespace Sudoku_Solver
 
             // Read File
 
-            ReadFile("sudoku_1.txt");
+            string tmp = ReadFile("sudoku_1.txt");
+            Sudoku sudoku = new Sudoku(tmp);
+            sudoku.PrintSudoku();
             Console.ReadLine();
         }
 
-        static private void ReadFile(string fileName)
+        static private string ReadFile(string fileName)
         {
+            string inputString = "";
             try
             {
                 Console.WriteLine(Directory.GetCurrentDirectory());
+   
                 using (StreamReader sr = new StreamReader(fileName))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
+                        inputString += line;
                         Console.WriteLine(line);
                     }
                 }
+   
             }
             catch (Exception e)
             {
@@ -39,6 +45,7 @@ namespace Sudoku_Solver
                 Console.WriteLine(e.Message);
             }
 
+            return inputString;
         }
 
         private void ParseFile()
